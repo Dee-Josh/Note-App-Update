@@ -71,7 +71,7 @@ save.addEventListener("click", ()=>{
     noteTitle = noteText.value;
 
     if (noteTitle === "") {
-        alert("Please Enter a note title");
+        alert("Please Enter a Note Title");
     }else if (newText === ""){
         alert("Cannot save empty note");
     }else{
