@@ -1,0 +1,198 @@
+/* PAGE RESET */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    width: 100%;
+    position: relative;
+    background-color: rgb(233, 233, 233);
+}
+
+header{
+    background-color: blueviolet;
+    z-index: 1000000000000;
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+}
+
+header h1{
+    border: 2px solid rgb(204, 204, 204);
+    padding: 2px 4px;
+    border-radius: 10px;
+}
+
+.sub-heading{
+    margin: 5px;
+    /* background-color: #fff; */
+    border: 2px solid blueviolet;
+    margin-top: 90px;
+    text-align: center;
+    padding: 8px ;
+}
+
+.new-text-template{
+    /* margin-top: 85px; */
+    padding: 0 5px;
+    margin-bottom: 65px;
+}
+
+.new-note{
+    height: 85px;
+    background-color: rgb(204, 204, 204);
+    padding: 2px 10px;
+    border-left: 5px solid blueviolet;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.new-note:hover{
+    cursor: pointer;
+}
+
+.new-note h2{
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.noNotes{
+    margin: 100px auto;
+    text-align: center;
+    
+}
+
+.note-title{
+    font-size: 20px;
+}
+
+.note-body{
+    height: 38px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fa-trash-can{
+    position: absolute;
+    /* z-index: 10; */
+    right: 5px;
+    bottom: 5px;
+}
+
+.fa-trash-can:hover{
+    cursor: pointer;
+}
+
+
+
+.new-note-plus{
+    background-color: blueviolet;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    z-index: 10000000;
+}
+
+.new-note-plus h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid rgb(204, 204, 204);
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.new-note-plus a{
+    color: initial;
+    text-decoration: none;
+}
+
+.delete-popup{
+    pointer-events: initial;
+    text-align: center;
+    position: fixed;
+    top: -500px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s;
+    background-color: blueviolet;
+    color: white;
+    width: 350px;
+    max-width: 90%;
+    height: 150px;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 809;
+}
+
+.display-close{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.delete-popup p{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.delete-popup .buttons{
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
+
+.buttons{
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
+
+.buttons button{
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.buttons button:first-child{
+    margin-right: 10px;
+}
+
+.buttons button:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+/* MEDIA QUERY */
+
+
+@media screen and (max-width: 600px) {
+    header{
+        font-size: 10px;
+    }
+
+    .sub-heading{
+        margin-top: 76px;
+    }
+}

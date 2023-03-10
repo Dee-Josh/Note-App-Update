@@ -1,0 +1,176 @@
+/* PAGE RESET */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    width: 100%;
+}
+
+.top{
+    font-size: 20px;
+    display: flex;
+    padding: 5px 10px;
+    background-color: blueviolet;
+    justify-content: space-between;
+    /* height: 30px; */
+}
+
+.save-back:hover{
+    cursor: pointer;
+}
+
+.fa-pencil{
+    cursor: pointer;
+}
+
+.display-none{
+    display: none;
+}
+
+.opaque{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.note-title{
+    width: 75%;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.sub-head{
+    font-size: 18px;
+    padding: 10px 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-link{
+    color: black;
+}
+
+.back-link:active{
+    color: black;
+}
+
+
+.page-layout{
+    margin-top: 10px;
+}
+
+.type:first-child{
+    border: none;
+    opacity: 0;
+    display: none;
+}
+
+.type:nth-child(2){
+    background-color: #fff;
+}
+
+.typ{
+    margin-top: 27px;
+    padding: 0 10px 0 10px;
+}
+
+.type{
+    width: 100%;
+    /* border: none; */
+    border: 0px;
+    border-bottom: 1px solid rgb(129, 129, 129);
+    outline: none;
+    height: 30px;
+    padding: 0 5px 0 5px;
+    
+}
+hr{
+    margin-bottom: 28px;
+}
+
+textarea.overlay{
+    overflow: hidden;
+    margin-top: 10px;
+    position: absolute;
+    top: 98px;
+    /* bottom: 30px; */
+    width: 100%;
+    /* height: 91vh; */
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    padding: 0 15px 0 15px;
+    font-size: 18px;
+    line-height: 30px;
+    resize: none ;
+    margin-bottom: 0px;
+}
+
+.page-layout{
+    /* height: calc(100vh - 90px); */
+    overflow: hidden;
+    /* margin-bottom: 10px; */
+}
+
+textarea.overlay{
+    height: calc(100vh - 124px);
+}
+
+
+
+.exit{
+    text-align: center;
+    position: absolute;
+    top: -500px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s;
+    background-color: blueviolet;
+    color: white;
+    width: 350px;
+    height: 150px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.display-close{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.display-close 
+
+.buttons{
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+}
+
+.buttons button{
+    width: 40px;
+}
+
+.buttons button:hover{
+    cursor: pointer;
+}
+
+/* MEDIA QUERY */
+
+
+@media screen and (max-width: 800px) {
+    
+    .typ{
+        margin-top: 26px;
+        padding: 0 10px 0 10px;
+    }
+
+}
