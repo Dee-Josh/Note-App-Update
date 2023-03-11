@@ -187,7 +187,7 @@ $("textarea").each(function() {
 }).on("input", function() {
     this.style.height = 0;
     this.style.height = (this.scrollHeight) + "px";
-    noteHeight = (this.scrollHeight) +(60) + "px";
+    noteHeight = (this.scrollHeight) +(60);
     // console.log(noteHeight);
 
     if (pageHeight <= (this.scrollHeight)) {
@@ -243,7 +243,15 @@ if(isNoteClicked === "true"){
 
     timeContainer.textContent = note.time;
 
-    pageLayout.style.height = note.height;
-    pageLines.style.height = note.height;
-    text.style.height = note.height;
+    if (note.height > (height - 121)) {
+        pageLayout.style.height = note.height + "px";
+        pageLines.style.height = note.height + "px";
+        text.style.height = note.height + "px";
+    }else{
+        pageLayout.style.height = (height - 108) + "px";
+        pageLines.style.height = (height - 108) + "px";
+        text.style.height = (height - 108) + "px";
+    }
+    
+    
 }
