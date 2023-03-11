@@ -61,10 +61,33 @@ if (JSON.stringify(min).length < 2) {
 timeContainer.textContent = `${day}/${month}/${year}  ${hour}:${min} ${amPm}`;
 
 
+
+
+
+let pageLayout = document.querySelector(".page-layout");
+
+pageLayout.style.height  = "calc(100vh - 90px)";
+
+let pageLines = document.querySelector(".typ");
+
+const pageHeight = $(".page-layout").height() - 121;
+console.log(pageHeight);
+
+const height = window.innerHeight;
+
+let heightChanged = false;
+
+
+
+
+
+
 // WHEN THE SAVE ICON IS CLICKED
 
 let edited;
 let noteHeight;
+
+let once;
 
 save.addEventListener("click", ()=>{
     newText = text.value;
@@ -108,7 +131,8 @@ save.addEventListener("click", ()=>{
             noteBody: newText,
             time: noteTime,
             index: i,
-            height: noteHeight
+            height: noteHeight,
+            heightChanged: heightChanged
         }
 
         if (edited){
@@ -160,56 +184,16 @@ pen.addEventListener("click", ()=>{
     text.focus();
 
     edited = true;
+
+
+
+
+    text.style.height = "1000%";
+    pageLayout.style.height = "";
+    pageLines.style.height = "";
+    once = true;
+    
 })
-
-
-
-
-let pageLayout = document.querySelector(".page-layout");
-
-pageLayout.style.height  = "calc(100vh - 90px)";
-
-let pageLines = document.querySelector(".typ");
-
-const pageHeight = $(document).height() - 121;
-
-const height = $(document).height();
-
-let heightChanged = false;
-
-
-
-// INCREASING THE HEIGHT OF THE TEXTAREA USING JQUERY
-
-
-$("textarea").each(function() {
-    this.setAttribute("style", "height:" + (this.scrollHeight) + "px: overflow-y: hidden;");
-}).on("input", function() {
-    this.style.height = 0;
-    this.style.height = (this.scrollHeight) + "px";
-    noteHeight = (this.scrollHeight) +(60) + "px";
-    // console.log(noteHeight);
-
-    if (pageHeight <= (this.scrollHeight)) {
-        pageLayout.style.height = (this.scrollHeight + 60) + "px";
-        heightChanged = true;
-    }else{
-        pageLayout.style.height  = "calc(100vh - 90px)";
-    }
-
-    if((this.scrollHeight) > 3512 ){
-        pageLines.innerHTML += `<hr><hr>`
-    }
-})
- 
-
-// On small screens.. the keypad changes the height of the screen.
-
-window.addEventListener("resize", ()=>{
-    if (!heightChanged ) {
-        pageLayout.style.height = (height - 121) + "px";
-    }
-});
 
 
 
@@ -220,7 +204,7 @@ let isNoteClicked = localStorage.getItem("isNoteClicked");
 
 
 
-
+let windowHeightCheck;
 
 
 if(isNoteClicked === "true"){
@@ -237,13 +221,102 @@ if(isNoteClicked === "true"){
     noteStatus.textContent = "Saved";
 
     let note = notes[clickedNote];
+    windowHeightCheck = note;
 
     noteText.value = note.noteTitle;
     text.value = note.noteBody;
 
     timeContainer.textContent = note.time;
+    console.log(note.height);
 
-    pageLayout.style.height = note.height;
-    pageLines.style.height = note.height;
-    text.style.height = note.height;
+    if (note.height > (height - 121)) {
+        text.style.height = note.height + "px";
+        pageLayout.style.height = note.height + "px";
+        pageLines.style.height = note.height + "px";
+    }else{
+        pageLayout.style.height = (height - 108) + "px";
+        pageLines.style.height = (height - 108) + "px";
+        text.style.height = (height - 108) + "px";
+    }  
 }
+
+
+// INCREASING THE HEIGHT OF THE TEXTAREA USING JQUERY
+
+
+$("textarea").each(function() {
+    this.setAttribute("style", "height:" + (this.scrollHeight) + "px;");
+}).on("input", function() {
+
+    if (once) {
+        text.style.height = "";
+      once = false;
+    }
+    // this.style.height = height;
+
+    if ((this.scrollHeight) > height) {
+        pageLayout.style.height = (this.scrollHeight) + "px";
+        pageLayout.style.overflow = "hidden";
+        pageLines.style.height = (this.scrollHeight) + "px";
+        // text.style.height = (this.scrollHeight) + "px";
+        
+    }else{
+        pageLayout.style.height = height + "px";
+        pageLayout.style.overflow = "hidden";
+        pageLines.style.height = height + "px";
+        // text.style.height = (this.scrollHeight) + "px";
+    }
+  
+    if ((this.scrollHeight) > height) {
+        this.style.height = (this.scrollHeight) + "px";
+        // this.style.paddingBottom = "60px";
+        // text.style.height = (this.scrollHeight) + "px";
+    }
+    noteHeight = (this.scrollHeight) +(60);
+    console.log((this.scrollHeight));
+
+
+    if (pageHeight <= (this.scrollHeight)) {
+        pageLayout.style.height = (this.scrollHeight + 60) + "px";
+        heightChanged = true;
+    }else{
+        // // pageLayout.style.height  = "calc(100vh - 90px)";
+        // pageLayout.style.height = (pageHeight - 121) + "px";
+        // heightChanged = false;
+        // alert("ggg")
+    }
+
+    if((this.scrollHeight) > 3512 ){
+        pageLines.innerHTML += `<hr><hr>`
+    }
+
+})
+ 
+
+
+
+// On small screens.. the keypad changes the height of the screen.
+
+
+window.addEventListener("resize", ()=>{
+    if (isNoteClicked === "true") {
+        heightChanged = windowHeightCheck.heightChanged;
+        if (!heightChanged) {
+            pageLayout.style.height = (height - 121) + "px";
+        }else{
+            
+            // text.style.height = noteHeight;
+            // pageLayout.style.height = noteHeight;
+            // pageLines.style.height = noteHeight;
+        }
+    }else{
+        if (!heightChanged) {
+            pageLayout.style.height = (height - 121) + "px";
+            // alert("jjjj")
+        }
+    }
+});
+
+
+
+
